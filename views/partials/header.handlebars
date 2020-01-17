@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <a class="navbar-brand" href="/">Mongo Scraper</a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/savedpage">Saved Articles</a>
+            </li>
+            {{#if homepage}}
+            <li class="nav-item">
+                <a class="btn btn-warning scrape-new">SCRAPE NEW ARTICLES!</a>
+            </li>&nbsp;&nbsp;
+            {{/if}}
+            <li class="nav-item">
+                <a class="btn btn-light clear">CLEAR ARTICLES!</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+    <div class="overlay">
+    </div>
+    <div class="background-image">
+    </div>
+    <div class="subtitle">
+        {{#if homepage}}
+        <h1>Mongo Scraper</h1>
+        <p>New York Times Edition</p>
+        <h6 class="under_construction">Under Construction: Click handling, didsplaying scraped
+            articles and saved article, notes, delete article, Heroku deployment</h6>
+        {{else}}
+        <h1>Saved Articles</h1>
+        <p>Your Saved Articles</p>
+        <h6 class="under_construction">Under Construction: Click handling, didsplaying scraped
+            articles and saved article, notes, delete article, Heroku deployment</h6>
+        {{/if}}
+    </div>
+</div>

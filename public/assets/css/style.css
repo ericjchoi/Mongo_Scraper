@@ -1,0 +1,18 @@
+nav {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.jumbotron {
+  background-image: url("../images/nytimes_sample.jpg");
+  background-size: cover;
+  font-family: monospace;
+}
+.subtitle {
+  color: white;
+}
+.under_construction {
+  color: red;
+  background: white;
+}
+footer {
+  text-align: center;
+}
