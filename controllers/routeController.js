@@ -106,6 +106,18 @@ router.get("/savedpage", function (req, res) {
     });
 });
 
+// clear all articles Route deletes all articles in the database
+router.get("/clear", function(req, res){
+    console.log(req.body)
+    db.Article.deleteMany({}, function(err, result){
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(result)
+        res.send(true)
+      }
+    })
+  });
 
 
 // export routes for server.js to use
