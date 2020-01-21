@@ -16,7 +16,8 @@ nav {
 footer {
   text-align: center;
 }
-.saveBtn {
+.saveBtn,
+.btnContainer {
   float: right;
 }
 .alert {

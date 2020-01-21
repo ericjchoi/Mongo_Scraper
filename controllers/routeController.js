@@ -2,7 +2,6 @@ var express = require("express");
 var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
-//var path = require("path"); ////////////////////
 
 // create router for the app
 var router = express.Router();
@@ -71,18 +70,6 @@ router.get("/scrape", function (req, res) {
     });
 });
 
-// Articles in `articles` collection in `mongoHeadlines` database  (Testing Purpose)
-router.get("/jsonDB", function (req, res) {
-    db.Article.find({}, function (err, data) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(data);
-            res.json(data);
-        }
-    });
-});
-
 // homepage Route
 router.get("/", function (req, res) {
     db.Article.find({ articleSaved: false }, function (err, data) {
@@ -101,23 +88,37 @@ router.get("/savedpage", function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("savedpage", { homepage: false, article: data });
+            res.render("savedpage", { homepage: false, article: data.map(x => x.toJSON()) });
         }
     });
 });
 
+// save article to database by changed saved field to true
+router.put("/jsonDB/:id", function (req, res) {
+    var saved = req.body.articleSaved == 'true';
+    if (saved) {
+        db.Article.updateOne({ _id: req.body._id }, { $set: { articleSaved: true } }, function (err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                return res.send(true);
+            }
+        });
+    }
+});
+
 // clear all articles Route deletes all articles in the database
-router.get("/clear", function(req, res){
+router.get("/clear", function (req, res) {
     console.log(req.body)
-    db.Article.deleteMany({}, function(err, result){
-      if (err) {
-        console.log(err)
-      } else {
-        console.log(result)
-        res.send(true)
-      }
+    db.Article.deleteMany({}, function (err, result) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result)
+            res.send(true)
+        }
     })
-  });
+});
 
 
 // export routes for server.js to use
