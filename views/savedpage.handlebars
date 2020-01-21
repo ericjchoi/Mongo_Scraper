@@ -3,12 +3,12 @@
 <div class="container-fluid article-container">
     {{#if article}}
     {{#each article}}
-    <div data-_id={{this._id}} class="card">
+    <div class="card" data-_id={{this._id}}>
         <div class="card-header">
             <h3>
                 <a class="article-link" target="_blank" rel="noopener noreferrer"
                     href={{this.url}}>{{this.headline}}</a>
-                <a class="btn btn-danger delete">Delete From Saved</a>&nbsp;&mbsp;
+                <a class="btn btn-danger delete">Delete From Saved</a>&nbsp;
                 <a class="btn btn-info notes">Article Notes</a>
             </h3>
         </div>
@@ -36,4 +36,4 @@
 
 {{> footer }}
 
-<script src="/assets/javascript/savedpage_handler.js"></script>
+<script src="/assets/javascript/savedpage_clickhandle.js"></script>

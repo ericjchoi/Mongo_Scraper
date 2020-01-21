@@ -1,6 +1,7 @@
 var express = require("express");
 var logger = require("morgan");
 var exphbs = require("express-handlebars");
+var mongoose = require("mongoose");
 
 var PORT = process.env.PORT || 3000;
 
@@ -25,6 +26,11 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/routeController.js");
 app.use(routes);
 
+// Connect to the Mongo DB
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+// DeprecationWarning from using 'mongoose.connect(MONGODB_URI);' resolved
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Start the server
 app.listen(PORT, function () {

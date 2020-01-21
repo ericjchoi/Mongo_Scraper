@@ -3,12 +3,12 @@
 <div class="container-fluid article-container">
     {{#if article}}
     {{#each article}}
-    <div data-_id={{this._id}} class="card">
+    <div  data-_id={{this._id}} class="card">
         <div class="card-header">
             <h3>
-                <a class="article-link" target="_blank" rel="noopener noreferrer"
-                    href={{this.url}}>{{this.headline}}</a>
-                <a class="btn btn-success save">Save Article</a>
+                <a class="article-link" target="_blank" rel="noopener noreferrer" href={{this.url}}>
+                    {{this.headline}}</a>
+                <a class="btn btn-success saveBtn">Save Article</a>
             </h3>
         </div>
         <div class="card-body">{{this.summary}}</div>
@@ -25,7 +25,7 @@
     </div>
     <div class="card-body text-center">
         <h4>
-            <a class="scrape-new">Try Scraping New Articles</a>
+            <a class="scrapeArticle">Try Scraping New Articles</a>
         </h4>
         <h4>
             <a href="/savedpage">Go to Saved Articles</a>
@@ -33,7 +33,6 @@
     </div>
 </div>
 {{/if}}
-
 {{> footer }}
 
-<script src="/assets/javascript/homepage_handler.js"></script>
+<script src="/assets/javascript/homepage_clickhandle.js"></script>

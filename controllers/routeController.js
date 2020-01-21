@@ -2,6 +2,7 @@ var express = require("express");
 var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
+//var path = require("path"); ////////////////////
 
 // create router for the app
 var router = express.Router();
@@ -11,12 +12,6 @@ var db = require("../models");
 
 // Initialize Express
 var app = express();
-
-// Connect to the Mongo DB
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-// DeprecationWarning from using 'mongoose.connect(MONGODB_URI);' resolved
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Routes
 
@@ -49,33 +44,66 @@ router.get("/scrape", function (req, res) {
                 .find("p")
                 .text()
                 .trim();
+
             // Create a new Article using the `result` object built from scraping
-            db.Article.create(result)
-                .then(function (dbArticle) {
-                    // View the added result in the console
-                    console.log(dbArticle);
-                })
-                .catch(function (err) {
-                    // If an error occurred, log it
-                    console.log(err);
+            // Add new headlines only
+            if (result.headline !== "" && result.summary !== "") {
+                db.Article.findOne({ headline: result.headline }, function (err, data) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        if (data === null) {
+                            db.Article.create(result)
+                                .then(function (dbArticle) {
+                                    // View the added result in the console
+                                    console.log(dbArticle);
+                                })
+                                .catch(function (err) {
+                                    // If an error occurred, log it
+                                    console.log(err);
+                                });
+                        }
+                    }
                 });
+            }
         });
         res.send("Scrape completed!");
+    });
+});
+
+// Articles in `articles` collection in `mongoHeadlines` database  (Testing Purpose)
+router.get("/jsonDB", function (req, res) {
+    db.Article.find({}, function (err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(data);
+            res.json(data);
+        }
     });
 });
 
 // homepage Route
 router.get("/", function (req, res) {
     db.Article.find({ articleSaved: false }, function (err, data) {
-        res.render("homepage", { homepage: true, article: data });
-    })
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(data);
+            res.render("homepage", { homepage: true, article: data.map(x => x.toJSON()) });
+        }
+    });
 });
 
 // savedpage Route
 router.get("/savedpage", function (req, res) {
     db.Article.find({ articleSaved: true }, function (err, data) {
-        res.render("savedpage", { homepage: false, article: data });
-    })
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("savedpage", { homepage: false, article: data });
+        }
+    });
 });
 
 

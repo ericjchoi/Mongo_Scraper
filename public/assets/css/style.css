@@ -16,3 +16,18 @@ nav {
 footer {
   text-align: center;
 }
+.saveBtn {
+  float: right;
+}
+.alert {
+  background-color: orange;
+  color: white;
+}
+.card-header {
+  background-color: teal;
+  color: white;
+}
+.article-link {
+  font-size: 1.3rem;
+  color: white;
+}
