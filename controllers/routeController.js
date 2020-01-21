@@ -93,10 +93,9 @@ router.get("/savedpage", function (req, res) {
     });
 });
 
-// save article to database by changed saved field to true
+// save article Route
 router.put("/jsonDB/:id", function (req, res) {
-    var saved = req.body.articleSaved == 'true';
-    if (saved) {
+    if (req.body.articleSaved) {
         db.Article.updateOne({ _id: req.body._id }, { $set: { articleSaved: true } }, function (err, result) {
             if (err) {
                 console.log(err);
@@ -120,6 +119,4 @@ router.get("/clear", function (req, res) {
     })
 });
 
-
-// export routes for server.js to use
 module.exports = router;
