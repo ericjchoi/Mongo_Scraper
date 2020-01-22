@@ -26,10 +26,8 @@ $(document).ready(function () {
             url: "/jsonDB/" + saveThisArticle._id,
             data: saveThisArticle
         }).then(function (data) {
-            console.log(data)
+            console.log(data);
             location.reload();
         });
     });
-
-
 });

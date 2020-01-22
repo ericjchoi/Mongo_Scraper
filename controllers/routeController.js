@@ -1,5 +1,4 @@
 var express = require("express");
-var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
 
@@ -10,7 +9,7 @@ var router = express.Router();
 var db = require("../models");
 
 // Initialize Express
-var app = express();
+/////////////////////////////var app = express();
 
 // Routes
 
@@ -106,15 +105,28 @@ router.put("/jsonDB/:id", function (req, res) {
     }
 });
 
+// delete article Route
+router.delete("/jsonDB/:id", function (req, res) {
+    if (req.params.id) {
+        db.Article.deleteOne({ _id: req.params.id }, function (err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                return res.send(true);
+            }
+        });
+    }
+});
+
 // clear all articles Route deletes all articles in the database
 router.get("/clear", function (req, res) {
     console.log(req.body)
     db.Article.deleteMany({}, function (err, result) {
         if (err) {
-            console.log(err)
+            console.log(err);
         } else {
-            console.log(result)
-            res.send(true)
+            console.log(result);
+            res.send(true);
         }
     })
 });

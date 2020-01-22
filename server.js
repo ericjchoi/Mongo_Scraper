@@ -28,7 +28,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-// DeprecationWarning from using 'mongoose.connect(MONGODB_URI);' resolved
+// DeprecationWarning from using `mongoose.connect(MONGODB_URI);` resolved
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 

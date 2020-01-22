@@ -24,9 +24,9 @@ Current Development
 - Scrape new article button click handling and displaying scraped article on main page.
 - Clear articles button click handling and delete all articles in the database
 - Save article button click handling and saved article rendering
+- Delete article from saved page button click handling and removal from database
 
 Under Construction: 
-- Delete article from saved page
 - Notes features
 - Heroku deployment link will be posted upon deployment
 
