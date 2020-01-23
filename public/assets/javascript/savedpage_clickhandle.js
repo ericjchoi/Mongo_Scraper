@@ -21,14 +21,17 @@ $(document).ready(function () {
             window.location.href = "/savedpage";
         });
     });
+    // `Article Notes` button clicked --> Under construction !!
+    $(".notes").on("click", function (event) {
+        // checking clicked article's _id
+        var currentArticle = $(this).parents(".card").data();
+        console.log(currentArticle._id);
 
-
-
-
-
-
-
-
-
-
+        // This Note feature is under construction !!
+        alert("NOTE feature is under construction. Article's _id verified." + "\n" +
+            "-----------------------------------------------------------" +
+            "\n" + "Notes For Article: " + currentArticle._id + "\n\n" +
+            "No notes for this article yet." + "\n\n" + "New Note" + "\n\n" +
+            "[SAVE NOTE]");
+    });
 });

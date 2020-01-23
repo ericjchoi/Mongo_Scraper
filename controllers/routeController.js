@@ -8,9 +8,6 @@ var router = express.Router();
 // Require all models
 var db = require("../models");
 
-// Initialize Express
-/////////////////////////////var app = express();
-
 // Routes
 
 // A GET route for scraping the nytime.com website
@@ -23,7 +20,6 @@ router.get("/scrape", function (req, res) {
         $("article").each(function (i, element) {
             // Save an empty result object
             var result = {};
-
             // Add the text and href of every link, and save them as properties of the result object
             result.headline = $(element)
                 .find("h2")
@@ -42,7 +38,6 @@ router.get("/scrape", function (req, res) {
                 .find("p")
                 .text()
                 .trim();
-
             // Create a new Article using the `result` object built from scraping
             // Add new headlines only
             if (result.headline !== "" && result.summary !== "") {
