@@ -33,7 +33,7 @@ Figure 5. `Article Notes` button clicked on saved page alerts with article's _id
 ## Under Construction
 - More Notes features - modal pop-up, save new note, delete note, rendering all existing notes
 
-Programming tool used
+## Programming tool used
 - HTML, CSS, Bootstrap, express-handlebars, Javascript, jQuary, Axios, npm packages, NodeJs, Mongoose and MongoDB
 
 ## [Run app on Heroku](https://pure-sierra-54185.herokuapp.com/)
